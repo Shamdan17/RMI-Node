@@ -45,11 +45,12 @@ public class RMIServer  extends UnicastRemoteObject implements RMIInterface {
 	@Override
 	public void printMessage(String s) throws RemoteException {//Prints a message s locally
 		// TODO Auto-generated method stub
-		System.out.println("Printed Message" + s);
+		System.out.println("Printed Message: " + s);
 	}
 
 	@Override
 	public void printAndForward(String msg) throws RemoteException {//Prints a message, then invokes the printing function in all the children.
+		
 		printMessage(msg);
 		
 		for(Node cur : Children) {
