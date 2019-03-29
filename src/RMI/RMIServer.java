@@ -19,13 +19,23 @@ public class RMIServer  extends UnicastRemoteObject implements RMIInterface {
 	private static int rmiPort = 1099;
 	
 	
-	protected RMIServer() throws RemoteException, UnknownHostException { //Constructor
+	public RMIServer() throws RemoteException, UnknownHostException { //Constructor
 		super();
 		String st = Inet4Address.getLocalHost().getHostAddress();
 		System.setProperty("java.rmi.server.hostname",st);
 		System.out.println("RMI Server proptery set. Inet4Address: "+st);
+		
 	}
-
+	//=====Class Methods=====
+	
+	
+	public void addChild(String ip) {// Add a child to the current not by its IP
+		Children.add(new Node(ip));
+	}
+	
+	
+	//=====RMI Methods=====
+	
 	@Override
 	public int add(int x, int y) throws RemoteException {//Adds two integers
 		System.out.println("Addition operation performed");
@@ -55,6 +65,4 @@ public class RMIServer  extends UnicastRemoteObject implements RMIInterface {
 		
 	}
 
-	
-	
 }
